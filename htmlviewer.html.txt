@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Consultant Leaderboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 p-4">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-3xl font-bold mb-6 text-center text-blue-700">Consultant Leaderboard</h1>
+      <table class="w-full bg-white shadow-md rounded-lg overflow-hidden mb-8">
+        <thead class="bg-blue-600 text-white">
+          <tr>
+            <th class="p-3 text-left">Consultant Name</th>
+            <th class="p-3 text-right">Total Retail</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard">
+          <!-- JS will insert rows here -->
+        </tbody>
+      </table>
+      <h2 class="text-2xl font-semibold mb-4 text-center text-green-700">Weekly Retails</h2>
+      <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-green-600 text-white">
+          <tr>
+            <th class="p-3 text-left">Consultant Name</th>
+            <th class="p-3 text-right">Weekly Retail</th>
+          </tr>
+        </thead>
+        <tbody id="weekly">
+          <!-- JS will insert rows here -->
+        </tbody>
+      </table>
+    </div>
+    <script>
+      // 💡 Yahan apna data change kar sakte ho
+      const consultants = [{
+        name: "Ravi Verma",
+        retail: 125000,
+        weekly: 22000
+      }, {
+        name: "Neha Singh",
+        retail: 98000,
+        weekly: 17000
+      }, {
+        name: "Amit Sharma",
+        retail: 87000,
+        weekly: 16000
+      }, {
+        name: "Kiran Patel",
+        retail: 110000,
+        weekly: 21000
+      }, ];
+      // Sort descending by total retail
+      consultants.sort((a, b) => b.retail - a.retail);
+      const leaderboardBody = document.getElementById("leaderboard");
+      const weeklyBody = document.getElementById("weekly");
+      consultants.forEach(c => {
+        leaderboardBody.innerHTML += `
+        
+				<tr class="border-t hover:bg-blue-50">
+					<td class="p-3">${c.name}</td>
+					<td class="p-3 text-right">₹${c.retail.toLocaleString()}</td>
+				</tr>
+      `;
+        weeklyBody.innerHTML += `
+        
+				<tr class="border-t hover:bg-green-50">
+					<td class="p-3">${c.name}</td>
+					<td class="p-3 text-right">₹${c.weekly.toLocaleString()}</td>
+				</tr>
+      `;
+      });
+    </script>
+  </body>
+</html>
